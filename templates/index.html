@@ -1,28 +1,37 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>NFL Players</title>
+    <link rel="stylesheet" href="{% static 'player_app/css/bootstrap.css'%}" media="screen" title="no title" charset="utf-8">
+    <base href="http://www.nfl.com" />
   </head>
   <body>
-    <form class="" action="" >
-      <h3>Enter player's first and last names. Check box for non-active players.</h3>
-      <input type="text" name="player" value="">
-      <br>
-      <input type="checkbox" name="historical" value="historical">
-      <p>(Check box only for non-active players.)</p>
-      <br>
-      <input type="submit" name="submit" value="Find player">
-    </form>
-    <h1></h1>
-    Player: {{ player.upper }}
-    <br>
-    <br>
+    <div class='container'>
+      <div class="jumbotron">
+        <h1>Get NFL player stats</h1>
+        <form class="" action="" >
+          <h3>Enter player's first and last names.</h3>
+          <input type="text" name="player" value="">
+          <br>
+          <label>
+          <input type="checkbox" id="checkboxWarning" name ='historical' value="historical">
+          Check this box only for non-active players
+          </label>
+          <br>
+          <input class='btn btn-primary' type="submit" name="submit" value="Find player">
+        </form>
+      </div>
 
-    {% autoescape off %}
-        {{ bio }}
-       {{ profile }}
-    {% endautoescape %}
-
+      Player: {{ player.upper }}
+      <br>
+      <br>
+      {% autoescape off %}
+          {{ bio }}
+         {{ stats }}
+      {% endautoescape %}
+  </div>
   </body>
 </html>

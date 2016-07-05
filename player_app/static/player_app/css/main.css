@@ -1,0 +1,7 @@
+/* not used because the URLs are now functional */
+
+a {
+  pointer-events: none;
+  text-decoration: none;
+  color: black;
+}

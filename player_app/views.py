@@ -14,5 +14,5 @@ def get_stats(request):
     content = requests.get(url)
     souper = BeautifulSoup(content.text, "html.parser")
     bio = str(souper.find(id='player-bio'))
-    profile = str(souper.find(id='player-stats-wrapper'))
-    return render(request, 'index.html', {'profile': profile, 'player': player, 'bio': bio})
+    stats = str(souper.find(id='player-stats-wrapper'))
+    return render(request, 'index.html', {'stats': stats, 'player': player, 'bio': bio})

@@ -1,0 +1,9 @@
+In this web-scraping application, the user is able to search for any current or
+former NFL player on the local host and return the same results as seen on the
+NFL.com website.
+
+The application assumes the player is a current one unless the user checks a box
+to indicate the player is no longer active.
+
+The URLs contained within the results are functional, taking the user to the
+various additional pages for career stats and team stats.

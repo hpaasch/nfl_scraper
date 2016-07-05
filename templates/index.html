@@ -6,13 +6,22 @@
   </head>
   <body>
     <form class="" action="" >
+      <h3>Enter player's first and last names. Check box for non-active players.</h3>
       <input type="text" name="player" value="">
+      <br>
+      <input type="checkbox" name="historical" value="historical">
+      <p>(Check box only for non-active players.)</p>
+      <br>
       <input type="submit" name="submit" value="Find player">
     </form>
-    <h1>{{ player }}</h1>
+    <h1></h1>
+    Player: {{ player.upper }}
+    <br>
+    <br>
+
     {% autoescape off %}
-      Player {{ stat }}
-      
+        {{ bio }}
+       {{ profile }}
     {% endautoescape %}
 
   </body>

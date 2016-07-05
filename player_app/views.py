@@ -3,17 +3,16 @@ from django.http import HttpResponse
 import requests
 from bs4 import BeautifulSoup
 
-#
-# def get_player_stats(request):
-#     return HttpResponse("howdy")
 
-
-
-def player_stats_view(request):
-    content = requests.get('http://www.nfl.com/players/search?category=name&filter=staubach&playerType=historical')
+def get_stats(request):
+    hostname = 'http://www.nfl.com'
+    player = request.GET.get('player') or 'cam newton'  # retrieving from html input
+    status = request.GET.get('historical') or 'current'
+    content = requests.get(hostname + '/players/search?category=name&filter={}&playerType={}'.format(player, status)).text
     souper = BeautifulSoup(content, "html.parser")
-    print(dir(content))
-
-    # souper = BeautifulSoup(content, "html.parser")
-    # print("Feels like: ", souper.find(id='curFeel').text)  # this delivers 88 F
-    # print("Real temp: ", souper.find(id='curTemp').text)  # this delivers 88 F
+    url = hostname + (souper.find(id='result').a.attrs['href'])  # creating a new url
+    content = requests.get(url)
+    souper = BeautifulSoup(content.text, "html.parser")
+    bio = str(souper.find(id='player-bio'))
+    profile = str(souper.find(id='player-stats-wrapper'))
+    return render(request, 'index.html', {'profile': profile, 'player': player, 'bio': bio})

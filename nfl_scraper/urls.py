@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from player_app.views import player_stats_view
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', player_stats_view, name='player_stats_view'),
 ]
